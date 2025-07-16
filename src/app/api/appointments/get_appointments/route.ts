@@ -24,6 +24,7 @@ export async function GET() {
     // We already know from the logs that clientEmail and privateKey are loaded
     const clientEmail = process.env.GOOGLE_CLIENT_EMAIL!;
     const privateKey = process.env.GOOGLE_PRIVATE_KEY!;
+    const scopes = process.env.GOOGLE_SCOPES!.split(',');
 
     // --- The New, Corrected Credentials ---
     const credentials = {
@@ -33,7 +34,7 @@ export async function GET() {
 
     const auth = new google.auth.GoogleAuth({
       credentials, // Pass the constructed object here
-      scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
+      scopes: scopes,
     });
 
     const sheets = google.sheets({ version: 'v4', auth });
