@@ -17,13 +17,13 @@ export interface IAppointment extends Document {
 const appointmentSchema = new Schema<IAppointment>(
   {
     ID: { type: String, required: true, unique: true },
-    name: { type: String, required: true },
-    phone: { type: String, required: true },
-    service: { type: String, required: true },
-    date: { type: String, required: true },
+    name: { type: String, required: false },
+    phone: { type: String, required: true , unique: true },
+    service: { type: String, required: false },
+    date: { type: String, required: false },
     status: {
       type: String,
-      required: true,
+      required: false,
       enum: ['pending', 'confirmed', 'cancelled'],
       default: 'pending',
     },

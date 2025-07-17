@@ -18,7 +18,7 @@ type isValidTokenTypes = {
 };
 
 export async function POST(req: Request) {
-  const { phone } = await req.json();
+  const { name, phone, service, date, status, reminder } = await req.json();
 
   //   --------- connect to database -----------
   await connectDB();
@@ -43,7 +43,10 @@ export async function POST(req: Request) {
     const ID = await createId(id_codes.idCode.appointment);
     createdAppointment = new AppointmentModel({
       ID,
+      name,
       phone,
+      service,
+      date,
     });
 
     await createdAppointment.save();
